@@ -4,9 +4,11 @@
 # In a list format
 # Where only the part of the name after the first dash is displayed
 
-for ((i=0; i < 1; i++)); do
-       touch t.txt
-       ls > t.txt
-       cut -d "-" -f 2 t.txt --only-delimited
-       rm t.txt
+for file in *; do
+  if [ -f "$file" ]; then
+    name_after_dash="${file#*-}"
+    if [ "$name_after_dash" != "$file" ]; then
+      echo "$name_after_dash"
+    fi
+  fi
 done
