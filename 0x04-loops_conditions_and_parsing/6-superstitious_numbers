@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Displays numbers from 1 to 20 and
+# Displays numbers from 1 to 20 and:
 # displays bad luck from China for the 4th loop iteration
 # displays bad luck from Japan for the 9th loop iteration
 # displays bad luck from Italy for the other iterations
