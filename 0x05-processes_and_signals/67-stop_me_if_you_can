@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
 # Bash script that stops 4-to_infinity_and_beyond process
 
-process_pid=$(pgrep -f "7-highlander")
-if [ -n "$process_pid" ]
-then
-	pkill -SIGUSR1 -P "$process_pid"
-fi
+pkill -f "7-highlander"
