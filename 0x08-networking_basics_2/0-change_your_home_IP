@@ -6,7 +6,7 @@
 
 old_ip="^.*\tlocalhost$"
 new_ip="127.0.0.2\tlocalhost"
-oldf_ip="^157.240.11.35\tfacebook.com$"
+oldf_ip="^157.240.11.35\t\tfacebook.com$"
 newf_ip="8.8.8.8\t\tfacebook.com"
 sudo cp /etc/hosts /etc/hosts.new
 file="/etc/hosts.new"
