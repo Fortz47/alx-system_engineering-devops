@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Bash script that configures an Ubuntu server
+#+with the below requirements
+# localhost resolves to 127.0.0.2
+# facebook.com resolves to 8.8.8.8
+
+old_ip="^.*\tlocalhost$"
+new_ip="127.0.0.2\tlocalhost"
+oldf_ip="^.*\tfacebook.com$"
+newf_ip="8.8.8.8\t\tfacebook.com"
+sudo cp /etc/hosts /etc/hosts.new
+file="/etc/hosts.new"
+sudo sed -i "s/$old_ip/$new_ip/" "$file"
+sudo sed -i "s/$oldf_ip/$newf_ip/" "$file"
+sudo cp -f /etc/hosts.new /etc/hosts
