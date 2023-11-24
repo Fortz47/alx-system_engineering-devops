@@ -1,4 +1,4 @@
-# install a package flask, using pip3 provider
+# installing a package using puppet with pip3 provider
 
 package { 'flask':
   ensure   => '2.1.0',
