@@ -1,8 +1,5 @@
-# kills a process named killmenow
+# execute a command
 
-exec { 'killmenow_process':
-    command     => 'pkill -f killmenow',
-    path        => '/usr/bin/',
-    refreshonly => 'true',
-    onlyif      => 'pgrep -f killmenow',
+exec { 'pkill killmenow':
+command   => '/usr/bin/pkill killmenow',
 }
