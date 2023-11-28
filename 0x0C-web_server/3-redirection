@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# a bash script to configure Nginx
+
+apt update
+apt install -y nginx
+echo "Hello World!" > /var/www/html/index.html
+# echo "301 Moved Permanently" > /var/wwww/html/redirect_me.html
+redirect_me="\n\tlocation /redirect_me {\n\
+	return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
+sed -i "/^server {/a \ $redirect_me" /etc/nginx/sites-available/default
+service nginx restart
