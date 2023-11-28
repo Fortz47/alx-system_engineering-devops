@@ -11,6 +11,6 @@ fi
 filePath="$1"
 serverIp="$2"
 username="$3"
-sshKey="4"
+sshKey="$4"
 
 scp -o StrictHostKeyChecking=no -i $sshKey $filePath "$username@$serverIp":~/
