@@ -1,7 +1,7 @@
 # Puppet to make changes to a configuration file
 
 exec { 'make ssh_config writable':
-  command     => '/usr/bin/chmod +w /etc/ssh/ssh_config',
+  command     => '/usr/bin/chmod u+w /etc/ssh/ssh_config',
   refreshonly => true,
 }
 
@@ -19,5 +19,5 @@ file_line { 'Declare identity file':
 }
 
 exec { 'make ssh_config readonly':
-  command => '/usr/bin/chmod -w /etc/ssh/ssh_config',
+  command => '/usr/bin/chmod u-w /etc/ssh/ssh_config',
 }
