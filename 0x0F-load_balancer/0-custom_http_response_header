@@ -14,7 +14,7 @@ sudo sed -i "/^http {/a \ \n\terror_page 404 /404.html;" /etc/nginx/nginx.conf
 
 #hostname="03-$(echo $HOSTNAME | awk -F- -v OFS='-' '{print $2, $3}' | tr -d '\n')"
 
-update="\n\tadd_header X-Served-By \"$HOSTNAME\";"
+update="\n\tadd_header X-Served-By \"$(hostname)\";"
 
 sudo sed -i "/server_name _;/a \ $update" /etc/nginx/sites-available/default
 
