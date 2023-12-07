@@ -44,7 +44,7 @@ backend web-backend
 frontend web-frontend
   bind *:80
   mode http
-#  reqadd X-Forwarded-Proto:\ http
+  reqadd X-Forwarded-Proto:\ http
   default_backend web-backend
 
 frontend www-https
