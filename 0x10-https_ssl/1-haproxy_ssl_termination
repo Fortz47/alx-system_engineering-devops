@@ -37,17 +37,18 @@ defaults
 
 backend web-backend
   balance roundrobin
-	redirect scheme https if !{ ssl_fc }
+  redirect scheme https if !{ ssl_fc }
   server 143015-web-01 54.157.184.77:80 check
   server 143015-web-02 18.234.130.161:80 check
 
 frontend web-frontend
   bind *:80
   mode http
+#  reqadd X-Forwarded-Proto:\ http
   default_backend web-backend
 
 frontend www-https
-	bind haproxy_www_public_IP:443 ssl crt /etc/haproxy/certs/example.com.pem
+  bind haproxy_www_public_IP:443 ssl crt /etc/haproxy/certs/www.softwaregenius.tech.pem
   reqadd X-Forwarded-Proto:\ https
   acl letsencrypt-acl path_beg /.well-known/acme-challenge/
   use_backend letsencrypt-backend if letsencrypt-acl
