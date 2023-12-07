@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Configure your domain zone
+
+get_record_info() {
+	local SUBDOMAIN=$1
+	local RECORD_TYPE=$2
+	local DESTINATION=$3
+
+	echo "The subdomain $SUBDOMAIN is a $RECORD_TYPE record and points to $DESTINATION"
+}
+
+main() {
+	local DOMAIN=$1
+	local SUBDOMAIN=$2
+
+	if [ -z $SUBDOMAIN ]; then
+				subdomains=("www" "lb-01" "web-01" "web-02")	
+	else
+				subdomains=("$SUBDOMAIN")
+	fi
+
+	for SUB in ${subdomains[@]}; do
+				destination=$(dig +short "$SUB.$DOMAIN")
+				record_type=$(dig "$SUB.$DOMAIN" | grep -A1 "ANSWER SECTION:" | grep -v "ANSWER SECTION:" | awk '{print $4}')
+				get_record_info "$SUB" "$record_type" "$destination"
+	done
+}
+
+main "$@"
