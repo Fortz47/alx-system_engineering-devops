@@ -34,27 +34,12 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 backend web-backend
-  mode http
   balance roundrobin
-  http-request set-header X-Forwarded-For %[src]
-  redirect scheme https if !{ ssl_fc }
   server 143015-web-01 54.157.184.77:80 check
   server 143015-web-02 18.234.130.161:80 check
 
 frontend web-frontend
   bind *:80
-  mode http
-  reqadd X-Forwarded-Proto:\ http
+	bind *:443 ssl crt /etc/haproxy/ssl-certs/softwaregenius.tech.pem
+	http-request redirect scheme https if !{ ssl_fc }
   default_backend web-backend
-
-frontend www-https
-  mode http
-  bind haproxy_www_public_IP:443 ssl crt /etc/haproxy/certs/www.softwaregenius.tech.pem
-  reqadd X-Forwarded-Proto:\ https
-  acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-  use_backend letsencrypt-backend if letsencrypt-acl
-  default_backend web-backend
-
-backend letsencrypt-backend
-  mode http
-  server letsencrypt 127.0.0.1:54321
