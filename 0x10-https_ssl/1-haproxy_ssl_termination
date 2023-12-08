@@ -49,7 +49,7 @@ frontend web-frontend
 
 frontend www-https
   mode http
-  bind haproxy_www_public_IP:443 ssl crt /etc/haproxy/certs/www.topunderscodebnb.tech.pem
+  bind haproxy_www_public_IP:443 ssl crt /etc/haproxy/certs/www.softwaregenius.tech.pem
   reqadd X-Forwarded-Proto:\ https
   acl letsencrypt-acl path_beg /.well-known/acme-challenge/
   use_backend letsencrypt-backend if letsencrypt-acl
