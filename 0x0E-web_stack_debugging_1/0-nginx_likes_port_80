@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 # Restart Nginx to make it liaten on port 80 after installation
-sudo service nginx restart > /dev/null
+
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+sudo service nginx restart
