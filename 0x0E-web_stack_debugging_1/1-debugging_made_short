@@ -2,4 +2,4 @@
 # Make the fix simple and short
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx start
-kill -s QUIT "$(cat /var/run/nginx.pid)"
+kill "$(pgrep 'nginx' | head -1)"
