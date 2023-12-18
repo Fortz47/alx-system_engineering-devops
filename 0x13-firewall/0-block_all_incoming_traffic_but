@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # configures ufw firewall
 
-sudo ufw allow tcp/22
-sudo ufw allow tcp/443
-sudo ufw allow tcp/80
+sudo ufw allow proto tcp in any from any port 22
+sudo ufw allow proto tcp in any from any port 443
+sudo ufw allow proto tcp in any from any port 80
