@@ -4,3 +4,4 @@
 sudo ufw allow proto tcp in any from any port 22
 sudo ufw allow proto tcp in any from any port 443
 sudo ufw allow proto tcp in any from any port 80
+sudo ufw enable
