@@ -5,14 +5,12 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    """
-    Returns the number of subscriber a subreddit has
+    """queries the Reddit API and returns the number of subscribers"""
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {'User-Agent': 'My-Agent'}
 
-    subreddit: subreddit to scrape for
-    """
-    body = requests.get(f'https://www.reddit.com/r/{subreddit}/about.json',
-                        headers={'User-Agent': 'My-Agent'},
-                        allow_redirects=False)
-    if body.status_code >= 300:
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code >= 300:
         return 0
-    return body.json().get('data').get('subscribers')
+    data = response.json()
+    return data.get('data').get('subscribers')
