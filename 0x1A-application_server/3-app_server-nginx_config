@@ -43,7 +43,7 @@ server {
                 proxy_set_header X-Forwarded-Proto $scheme;
         }
 
-        location ~ ^/number_odd_or_even/(\d+)$ {
+        location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
                 proxy_pass http://localhost:5001;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
