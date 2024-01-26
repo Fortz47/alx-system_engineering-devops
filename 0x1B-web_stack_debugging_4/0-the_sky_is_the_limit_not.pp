@@ -2,12 +2,11 @@
 
 file { '/etc/default/nginx':
   ensure  => present,
-  content => template('module_name/nginx_default.erb'),
-}
+  content => template('./nginx_default.erb'),
+} ->
 
-service { 'nginx':
-  ensure     => running,
-  enable     => true,
-  subscribe  => File['/etc/default/nginx'],
+# Restart Nginx
+exec { 'nginx-restart':
+  command => '/etc/init.d/nginx restart',
+  path    => '/etc/init.d/'
 }
-
